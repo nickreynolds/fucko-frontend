@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Drizzle } from '@drizzle/store';
+import FuckoPops from "./contracts/FuckoPops.json";
+
+const options = {
+  contracts: [
+    FuckoPops
+  ]
+}
+const drizzle = new Drizzle(options);
+console.log("index drizzle: ", drizzle);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App drizzle={drizzle} />
   </React.StrictMode>,
   document.getElementById('root')
 );
