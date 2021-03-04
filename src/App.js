@@ -9,6 +9,43 @@ import {
 } from "react-router-dom";
 import Auction from "./components/Auction";
 import FuckoList from "./components/FuckoList";
+import CreateGenerativeCode from './components/CreateGenerativeCode';
+import styled from "styled-components";
+// import background from "./images/fucko-background-2.png"
+
+const Header = styled.header`
+background-color: #282c34;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: white;
+`;
+
+const NavBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const NavItem = styled(Link)`
+padding: 40px;
+text-decoration: none;
+color: white;
+visited: white;
+`;
+
+const AppBody = styled.div`
+  background-image: url(/fucko-background-2.png);
+  min-height: 100%;
+`;
+
+const Canvas = styled.canvas`
+  width: 200%;
+  height: 200%;
+  color: white;
+`;
 
 
 const App = props => {
@@ -39,10 +76,26 @@ const App = props => {
       "Loading Drizzle..." 
       :
     <div className="App">
-      <header className="App-header">
-      <Auction drizzle={drizzle} drizzleState={drizzleReadinessState.drizzleState} />
-      <FuckoList drizzle={drizzle} drizzleState={drizzleReadinessState.drizzleState} />
-      </header>
+      <Router>
+        <Header>
+          <NavBar>
+            <NavItem to="/">HOME</NavItem>
+            <NavItem to="/create">P5JS SANDBOX</NavItem>
+            <NavItem to="/about">ABOUT</NavItem>
+          </NavBar>
+        </Header>
+        <AppBody>
+          <Switch>
+            <Route path="/create">
+              <CreateGenerativeCode />
+            </Route>
+            <Route path="/">
+              <Auction drizzle={drizzle} drizzleState={drizzleReadinessState.drizzleState} />
+              <FuckoList drizzle={drizzle} drizzleState={drizzleReadinessState.drizzleState} />
+            </Route>
+          </Switch>
+        </AppBody>
+      </Router>
     </div>
   );
 }
