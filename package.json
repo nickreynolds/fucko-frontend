@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "decomment": "^0.9.3",
+    "dotenv": "^8.2.0",
     "jshint": "^2.12.0",
     "loop-protect": "^2.1.6",
     "react": "^17.0.1",

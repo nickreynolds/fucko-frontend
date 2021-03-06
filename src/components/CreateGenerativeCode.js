@@ -2,6 +2,9 @@ import React, { useState, useEffect, Fragment } from 'react';
 import P5Sandbox from './P5Sandbox';
 import styled from "styled-components";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const CreateGenerativeCodeContainer = styled.div`
     display: flex;
@@ -35,6 +38,7 @@ function draw() {
 
 export default function CreateGenerativeCode(props) {
    
+    console.log("process.env: ", process.env)
     const [blockNum, setBlockNum] = useState(1001);
     const [uniqueCode, setUniqueCode] = useState(STARTING_CODE)
     const [response, setResponse] = useState("");
@@ -52,7 +56,7 @@ export default function CreateGenerativeCode(props) {
             </CreateGenerativeCodeContainer>
             <button onClick={async () => {
                 setResponse("");
-                const response = await axios.post("http://localhost:4000/save-code", uniqueCode, { headers: {
+                const response = await axios.post("https://service.fuckopops.com/save-code", uniqueCode, { headers: {
                     "content-type": "text/plain"
                 }});
                 //const response = await axios({method: "post", url: "http://localhost:4000/save-code", data: uniqueCode});
